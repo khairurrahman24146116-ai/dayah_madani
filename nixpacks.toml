@@ -2,11 +2,5 @@
 version = "8.2"
 extensions = ["bcmath", "ctype", "fileinfo", "json", "mbstring", "openssl", "pdo", "pdo_sqlite", "tokenizer", "xml", "gd", "zip"]
 
-[phases.setup]
-nixPkgs = ["php82", "php82Extensions.pdo_sqlite", "composer"]
-
-[phases.install]
-cmds = ["composer install --no-dev --optimize-autoloader"]
-
 [start]
 cmd = "php artisan migrate --force && php artisan db:seed --force && php artisan serve --host=0.0.0.0 --port=$PORT"
