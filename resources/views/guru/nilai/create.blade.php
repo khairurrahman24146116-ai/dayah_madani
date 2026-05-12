@@ -34,13 +34,13 @@
                             <td class="px-4 py-3 text-sm text-gray-700" data-label="Nama">{{ $santri->nama_lengkap }}</td>
                             <td class="px-4 py-3 text-sm text-center" data-label="N. Tugas">
                                 @php $nilaiExisting = $santri->nilai->first(); @endphp
-                                <input type="number" name="nilai[{{ $santri->id }}][nilai_tugas]" value="{{ old('nilai.' . $santri->id . '.nilai_tugas', $nilaiExisting->nilai_tugas ?? '') }}" min="0" max="100" class="w-16 sm:w-20 border border-gray-300 rounded-lg p-1.5 text-center text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                <input type="number" name="nilai[{{ $santri->id }}][nilai_tugas]" value="{{ old('nilai.' . $santri->id . '.nilai_tugas', $nilaiExisting->nilai_tugas ?? '') }}" min="0" max="100" class="w-full sm:w-20 border border-gray-300 rounded-lg p-2 sm:p-1.5 text-center text-base sm:text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
                             </td>
                             <td class="px-4 py-3 text-sm text-center" data-label="N. UTS">
-                                <input type="number" name="nilai[{{ $santri->id }}][nilai_uts]" value="{{ old('nilai.' . $santri->id . '.nilai_uts', $nilaiExisting->nilai_uts ?? '') }}" min="0" max="100" class="w-16 sm:w-20 border border-gray-300 rounded-lg p-1.5 text-center text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                <input type="number" name="nilai[{{ $santri->id }}][nilai_uts]" value="{{ old('nilai.' . $santri->id . '.nilai_uts', $nilaiExisting->nilai_uts ?? '') }}" min="0" max="100" class="w-full sm:w-20 border border-gray-300 rounded-lg p-2 sm:p-1.5 text-center text-base sm:text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
                             </td>
                             <td class="px-4 py-3 text-sm text-center" data-label="N. UAS">
-                                <input type="number" name="nilai[{{ $santri->id }}][nilai_uas]" value="{{ old('nilai.' . $santri->id . '.nilai_uas', $nilaiExisting->nilai_uas ?? '') }}" min="0" max="100" class="w-16 sm:w-20 border border-gray-300 rounded-lg p-1.5 text-center text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                <input type="number" name="nilai[{{ $santri->id }}][nilai_uas]" value="{{ old('nilai.' . $santri->id . '.nilai_uas', $nilaiExisting->nilai_uas ?? '') }}" min="0" max="100" class="w-full sm:w-20 border border-gray-300 rounded-lg p-2 sm:p-1.5 text-center text-base sm:text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
                             </td>
                             <td class="px-4 py-3 text-sm text-center font-medium text-gray-800" data-label="N. Akhir">
                                 @php

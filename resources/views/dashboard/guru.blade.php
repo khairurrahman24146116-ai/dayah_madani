@@ -35,8 +35,8 @@
     <div class="px-4 sm:px-6 py-4 border-b border-gray-100">
         <h2 class="text-lg font-semibold text-gray-800">Jadwal {{ $hari }}</h2>
     </div>
-    <div class="overflow-x-auto">
-        <table class="w-full">
+    <div class="table-responsive">
+        <table class="w-full table-card">
             <thead>
                 <tr class="bg-gray-50 text-left text-sm font-semibold text-gray-600">
                     <th class="px-6 py-3">Mapel</th>
@@ -48,14 +48,14 @@
             <tbody class="divide-y divide-gray-100 text-sm">
                 @forelse($jadwalHari as $j)
                 <tr class="hover:bg-gray-50 transition">
-                    <td class="px-6 py-3 font-medium text-gray-800">{{ $j->mapel->nama ?? '-' }}</td>
-                    <td class="px-6 py-3 text-gray-600">{{ $j->kelas->nama ?? '-' }}</td>
-                    <td class="px-6 py-3 text-gray-600">{{ $j->jam_mulai ?? '-' }} - {{ $j->jam_selesai ?? '-' }}</td>
-                    <td class="px-6 py-3 text-gray-600">{{ $j->ruangan ?? '-' }}</td>
+                    <td class="px-6 py-3 font-medium text-gray-800" data-label="Mapel">{{ $j->mapel->nama ?? '-' }}</td>
+                    <td class="px-6 py-3 text-gray-600" data-label="Kelas">{{ $j->kelas->nama ?? '-' }}</td>
+                    <td class="px-6 py-3 text-gray-600" data-label="Jam">{{ $j->jam_mulai ?? '-' }} - {{ $j->jam_selesai ?? '-' }}</td>
+                    <td class="px-6 py-3 text-gray-600" data-label="Ruangan">{{ $j->ruangan ?? '-' }}</td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="4" class="px-6 py-8 text-center text-gray-400">Tidak ada jadwal</td>
+                    <td colspan="4" class="px-6 py-8 text-center text-gray-400 empty-card">Tidak ada jadwal</td>
                 </tr>
                 @endforelse
             </tbody>

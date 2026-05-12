@@ -7,7 +7,7 @@
 <div class="min-h-screen bg-gradient-to-br from-emerald-900 via-emerald-800 to-amber-900 flex flex-col">
     <div class="flex-1 flex items-center justify-center px-4">
         <div class="text-center max-w-3xl">
-            <div class="text-7xl mb-6">🏫</div>
+            <div class="text-5xl sm:text-6xl md:text-7xl mb-6">🏫</div>
             <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
                 LPI Madani <span class="text-amber-400">Al-Aziziyah</span>
             </h1>

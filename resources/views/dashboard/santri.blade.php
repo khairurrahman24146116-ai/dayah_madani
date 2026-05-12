@@ -9,7 +9,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
     <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
         <h2 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Informasi Santri</h2>
-        <div class="grid grid-cols-2 gap-4 text-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             <div>
                 <p class="text-gray-500">NIS</p>
                 <p class="font-semibold text-gray-800">{{ $santri->nis ?? '-' }}</p>
@@ -65,32 +65,34 @@
     <div class="px-4 sm:px-6 py-4 border-b border-gray-100">
         <h2 class="text-base sm:text-lg font-semibold text-gray-800">Jadwal Pelajaran</h2>
     </div>
-    <div class="table-responsive">
+    <div class="p-4">
         @foreach($jadwal as $hari => $jadwalHari)
-        <div class="p-4 border-b border-gray-100">
-            <h3 class="font-semibold text-gray-700 mb-2">{{ $hari }}</h3>
-            <table class="w-full text-sm">
-                <thead>
-                    <tr class="bg-gray-50 text-left text-xs font-semibold text-gray-600">
-                        <th class="px-4 py-2">Mapel</th>
-                        <th class="px-4 py-2">Guru</th>
-                        <th class="px-4 py-2">Jam</th>
-                        <th class="px-4 py-2">Ruangan</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-100">
-                    @forelse($jadwalHari as $j)
-                    <tr>
-                        <td class="px-4 py-2 font-medium">{{ $j->mapel->nama ?? '-' }}</td>
-                        <td class="px-4 py-2">{{ $j->guru->nama_lengkap ?? $j->guru->user->name ?? '-' }}</td>
-                        <td class="px-4 py-2">{{ $j->jam_mulai ?? '-' }} - {{ $j->jam_selesai ?? '-' }}</td>
-                        <td class="px-4 py-2">{{ $j->ruangan ?? '-' }}</td>
-                    </tr>
-                    @empty
-                    <tr><td colspan="4" class="px-4 py-4 text-center text-gray-400">Tidak ada jadwal</td></tr>
-                    @endforelse
-                </tbody>
-            </table>
+        <div class="mb-4">
+            <h3 class="font-semibold text-gray-700 mb-2 text-sm">{{ $hari }}</h3>
+            <div class="table-responsive">
+                <table class="w-full text-sm table-card">
+                    <thead>
+                        <tr class="bg-gray-50 text-left text-xs font-semibold text-gray-600">
+                            <th class="px-4 py-2">Mapel</th>
+                            <th class="px-4 py-2">Guru</th>
+                            <th class="px-4 py-2">Jam</th>
+                            <th class="px-4 py-2">Ruangan</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        @forelse($jadwalHari as $j)
+                        <tr>
+                            <td class="px-4 py-2 font-medium" data-label="Mapel">{{ $j->mapel->nama ?? '-' }}</td>
+                            <td class="px-4 py-2" data-label="Guru">{{ $j->guru->nama_lengkap ?? $j->guru->user->name ?? '-' }}</td>
+                            <td class="px-4 py-2" data-label="Jam">{{ $j->jam_mulai ?? '-' }} - {{ $j->jam_selesai ?? '-' }}</td>
+                            <td class="px-4 py-2" data-label="Ruangan">{{ $j->ruangan ?? '-' }}</td>
+                        </tr>
+                        @empty
+                        <tr><td colspan="4" class="px-4 py-4 text-center text-gray-400 empty-card">Tidak ada jadwal</td></tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
         @endforeach
     </div>
