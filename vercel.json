@@ -1,5 +1,4 @@
 {
-    "buildCommand": "composer install --no-dev --optimize-autoloader",
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.7.0",
@@ -8,8 +7,6 @@
         }
     },
     "routes": [
-        { "source": "/build/(.*)", "destination": "/api/index.php" },
-        { "source": "/storage/(.*)", "destination": "/api/index.php" },
         { "source": "/(.*)", "destination": "/api/index.php" }
     ],
     "cleanUrls": true
