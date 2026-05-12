@@ -4,16 +4,16 @@
 
 @section('content')
 <div class="bg-white shadow-md rounded-lg overflow-hidden">
-    <div class="px-6 py-4 bg-emerald-600">
-        <h1 class="text-xl font-bold text-white">Input Nilai - {{ $kelas->nama }} - {{ $mapel->nama }}</h1>
+    <div class="px-4 sm:px-6 py-4 bg-emerald-600">
+        <h1 class="text-lg sm:text-xl font-bold text-white">Input Nilai - {{ $kelas->nama }} - {{ $mapel->nama }}</h1>
     </div>
-    <div class="p-6">
+    <div class="p-4 sm:p-6">
         <form action="{{ route('guru.nilai.store') }}" method="POST">
             @csrf
             <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
             <input type="hidden" name="mapel_id" value="{{ $mapel->id }}">
-            <div class="overflow-x-auto">
-                <table class="w-full table-auto border-collapse">
+            <div class="table-responsive">
+                <table class="w-full table-auto border-collapse table-card">
                     <thead>
                         <tr class="bg-emerald-600 text-white">
                             <th class="px-4 py-3 text-left text-sm font-semibold">No</th>
@@ -29,20 +29,20 @@
                     <tbody class="divide-y divide-gray-200">
                         @forelse($santris as $i => $santri)
                         <tr class="hover:bg-gray-50 transition">
-                            <td class="px-4 py-3 text-sm text-gray-700">{{ $i + 1 }}</td>
-                            <td class="px-4 py-3 text-sm text-gray-700">{{ $santri->nis }}</td>
-                            <td class="px-4 py-3 text-sm text-gray-700">{{ $santri->nama_lengkap }}</td>
-                            <td class="px-4 py-3 text-sm text-center">
+                            <td class="px-4 py-3 text-sm text-gray-700" data-label="No">{{ $i + 1 }}</td>
+                            <td class="px-4 py-3 text-sm text-gray-700" data-label="NIS">{{ $santri->nis }}</td>
+                            <td class="px-4 py-3 text-sm text-gray-700" data-label="Nama">{{ $santri->nama_lengkap }}</td>
+                            <td class="px-4 py-3 text-sm text-center" data-label="N. Tugas">
                                 @php $nilaiExisting = $santri->nilai->first(); @endphp
-                                <input type="number" name="nilai[{{ $santri->id }}][nilai_tugas]" value="{{ old('nilai.' . $santri->id . '.nilai_tugas', $nilaiExisting->nilai_tugas ?? '') }}" min="0" max="100" class="w-20 border border-gray-300 rounded-lg p-1.5 text-center text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                                <input type="number" name="nilai[{{ $santri->id }}][nilai_tugas]" value="{{ old('nilai.' . $santri->id . '.nilai_tugas', $nilaiExisting->nilai_tugas ?? '') }}" min="0" max="100" class="w-16 sm:w-20 border border-gray-300 rounded-lg p-1.5 text-center text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
                             </td>
-                            <td class="px-4 py-3 text-sm text-center">
-                                <input type="number" name="nilai[{{ $santri->id }}][nilai_uts]" value="{{ old('nilai.' . $santri->id . '.nilai_uts', $nilaiExisting->nilai_uts ?? '') }}" min="0" max="100" class="w-20 border border-gray-300 rounded-lg p-1.5 text-center text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                            <td class="px-4 py-3 text-sm text-center" data-label="N. UTS">
+                                <input type="number" name="nilai[{{ $santri->id }}][nilai_uts]" value="{{ old('nilai.' . $santri->id . '.nilai_uts', $nilaiExisting->nilai_uts ?? '') }}" min="0" max="100" class="w-16 sm:w-20 border border-gray-300 rounded-lg p-1.5 text-center text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
                             </td>
-                            <td class="px-4 py-3 text-sm text-center">
-                                <input type="number" name="nilai[{{ $santri->id }}][nilai_uas]" value="{{ old('nilai.' . $santri->id . '.nilai_uas', $nilaiExisting->nilai_uas ?? '') }}" min="0" max="100" class="w-20 border border-gray-300 rounded-lg p-1.5 text-center text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
+                            <td class="px-4 py-3 text-sm text-center" data-label="N. UAS">
+                                <input type="number" name="nilai[{{ $santri->id }}][nilai_uas]" value="{{ old('nilai.' . $santri->id . '.nilai_uas', $nilaiExisting->nilai_uas ?? '') }}" min="0" max="100" class="w-16 sm:w-20 border border-gray-300 rounded-lg p-1.5 text-center text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" required>
                             </td>
-                            <td class="px-4 py-3 text-sm text-center font-medium text-gray-800">
+                            <td class="px-4 py-3 text-sm text-center font-medium text-gray-800" data-label="N. Akhir">
                                 @php
                                     $tugas = old('nilai.' . $santri->id . '.nilai_tugas', $nilaiExisting->nilai_tugas ?? 0);
                                     $uts = old('nilai.' . $santri->id . '.nilai_uts', $nilaiExisting->nilai_uts ?? 0);
@@ -51,7 +51,7 @@
                                 @endphp
                                 {{ number_format($akhir, 0) }}
                             </td>
-                            <td class="px-4 py-3 text-sm text-center font-medium">
+                            <td class="px-4 py-3 text-sm text-center font-medium" data-label="Predikat">
                                 @php
                                     if ($akhir >= 85) $pred = 'A';
                                     elseif ($akhir >= 75) $pred = 'B';
@@ -70,17 +70,17 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="8" class="px-4 py-6 text-center text-gray-500">Tidak ada santri di kelas ini.</td>
+                            <td colspan="8" class="px-4 py-6 text-center text-gray-500 empty-card">Tidak ada santri di kelas ini.</td>
                         </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
             @if(count($santris) > 0)
-            <div class="mt-6 flex items-center space-x-3">
-                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition">Simpan Semua Nilai</button>
-                <a href="{{ route('guru.nilai.print', [$kelas->id, $mapel->id]) }}" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition">Cetak PDF</a>
-                <a href="{{ route('guru.nilai.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition">Kembali</a>
+            <div class="mt-6 mobile-stack">
+                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition w-full sm:w-auto">Simpan Semua Nilai</button>
+                <a href="{{ route('guru.nilai.print', [$kelas->id, $mapel->id]) }}" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition text-center w-full sm:w-auto">Cetak PDF</a>
+                <a href="{{ route('guru.nilai.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition text-center w-full sm:w-auto">Kembali</a>
             </div>
             @endif
         </form>

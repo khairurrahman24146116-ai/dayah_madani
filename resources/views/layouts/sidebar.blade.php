@@ -1,4 +1,4 @@
-<div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-10 hidden lg:hidden"></div>
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-10 hidden lg:hidden"></div>
 <aside id="sidebar" class="fixed left-0 top-16 w-64 h-[calc(100vh-4rem)] bg-white shadow-lg border-r border-gray-200 overflow-y-auto z-20 -translate-x-full lg:translate-x-0 transition-transform duration-300">
     <div class="p-4">
         <div class="text-center mb-6 pb-4 border-b border-gray-100">

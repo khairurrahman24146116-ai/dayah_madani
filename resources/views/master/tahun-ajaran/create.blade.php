@@ -4,10 +4,10 @@
 
 @section('content')
 <div class="bg-white shadow-md rounded-lg overflow-hidden">
-    <div class="px-6 py-4 bg-emerald-600">
-        <h1 class="text-xl font-bold text-white">Tambah Tahun Ajaran</h1>
+    <div class="px-4 sm:px-6 py-4 bg-emerald-600">
+        <h1 class="text-lg sm:text-xl font-bold text-white">Tambah Tahun Ajaran</h1>
     </div>
-    <div class="p-6">
+    <div class="p-4 sm:p-6">
         <form action="{{ route('admin.tahun-ajaran.store') }}" method="POST">
             @csrf
             <div class="mb-4">
@@ -58,9 +58,9 @@
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="flex items-center space-x-3">
-                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition">Simpan</button>
-                <a href="{{ route('admin.tahun-ajaran.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition">Kembali</a>
+            <div class="mobile-stack">
+                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition w-full sm:w-auto">Simpan</button>
+                <a href="{{ route('admin.tahun-ajaran.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition text-center w-full sm:w-auto">Kembali</a>
             </div>
         </form>
     </div>

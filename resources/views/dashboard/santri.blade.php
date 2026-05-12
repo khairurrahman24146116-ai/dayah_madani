@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('title', 'Dashboard Santri')
 @section('content')
-<div class="mb-8">
-    <h1 class="text-2xl font-bold text-gray-800">Dashboard Santri</h1>
+<div class="mb-6 sm:mb-8">
+    <h1 class="text-xl sm:text-2xl font-bold text-gray-800">Dashboard Santri</h1>
     <p class="text-gray-500 text-sm mt-1">Selamat datang, {{ $santri->nama_lengkap ?? Auth::user()->name }}</p>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-    <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">Informasi Santri</h2>
+    <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
+        <h2 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Informasi Santri</h2>
         <div class="grid grid-cols-2 gap-4 text-sm">
             <div>
                 <p class="text-gray-500">NIS</p>
@@ -33,8 +33,8 @@
         </div>
     </div>
 
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">Status KRS</h2>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
+        <h2 class="text-base sm:text-lg font-semibold text-gray-800 mb-4">Status KRS</h2>
         @php
             $statusKrs = $krs ? $krs->status : 'belum';
             $statusMap = [
@@ -62,10 +62,10 @@
 
 @if($krs && $krs->status === 'disetujui')
 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mb-8">
-    <div class="px-6 py-4 border-b border-gray-100">
-        <h2 class="text-lg font-semibold text-gray-800">Jadwal Pelajaran</h2>
+    <div class="px-4 sm:px-6 py-4 border-b border-gray-100">
+        <h2 class="text-base sm:text-lg font-semibold text-gray-800">Jadwal Pelajaran</h2>
     </div>
-    <div class="overflow-x-auto">
+    <div class="table-responsive">
         @foreach($jadwal as $hari => $jadwalHari)
         <div class="p-4 border-b border-gray-100">
             <h3 class="font-semibold text-gray-700 mb-2">{{ $hari }}</h3>
@@ -98,10 +98,10 @@
 @endif
 
 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-    <div class="px-6 py-4 border-b border-gray-100">
-        <h2 class="text-lg font-semibold text-gray-800">Ringkasan Nilai</h2>
+    <div class="px-4 sm:px-6 py-4 border-b border-gray-100">
+        <h2 class="text-base sm:text-lg font-semibold text-gray-800">Ringkasan Nilai</h2>
     </div>
-    <div class="p-6">
+    <div class="p-4 sm:p-6">
         @php $rataNilai = $nilai->avg('nilai_akhir'); @endphp
         @if($rataNilai)
         <div class="flex items-center space-x-4">
