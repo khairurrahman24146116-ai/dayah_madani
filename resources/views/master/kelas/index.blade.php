@@ -1,0 +1,60 @@
+@extends('layouts.app')
+
+@section('title', 'Data Kelas')
+
+@section('content')
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="px-6 py-4 bg-emerald-600 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-white">Data Kelas</h1>
+        <a href="{{ route('admin.kelas.create') }}" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition">+ Tambah Kelas</a>
+    </div>
+    <div class="p-6">
+        @if(session('success'))
+            <div class="bg-emerald-100 border-l-4 border-emerald-500 text-emerald-800 p-4 mb-6 rounded-r-lg flex items-center justify-between shadow-sm">
+                <span>{{ session('success') }}</span>
+                <button onclick="this.parentElement.remove()" class="text-emerald-600 hover:text-emerald-800 text-xl leading-none">&times;</button>
+            </div>
+        @endif
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto border-collapse bg-white shadow-md rounded-lg overflow-hidden">
+                <thead>
+                    <tr class="bg-emerald-600 text-white">
+                        <th class="px-4 py-3 text-left text-sm font-semibold">No</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold">Kode</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold">Nama</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold">Tingkat</th>
+                        <th class="px-4 py-3 text-left text-sm font-semibold">Jurusan</th>
+                        <th class="px-4 py-3 text-center text-sm font-semibold">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    @forelse($data as $i => $k)
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="px-4 py-3 text-sm text-gray-700">{{ $data->firstItem() + $i }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-700">{{ $k->kode }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-700">{{ $k->nama }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-700">{{ $k->tingkat->nama ?? '-' }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-700">{{ $k->jurusan->nama ?? '-' }}</td>
+                        <td class="px-4 py-3 text-sm text-center">
+                            <a href="{{ route('admin.kelas.edit', $k->id) }}" class="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition inline-block">Edit</a>
+                            <form action="{{ route('admin.kelas.destroy', $k->id) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="6" class="px-4 py-6 text-center text-gray-500">Belum ada data kelas.</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4">
+            {{ $data->links() }}
+        </div>
+    </div>
+</div>
+@endsection
